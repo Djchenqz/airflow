@@ -39,3 +39,7 @@ def main():
         func = getattr(goods_task_handler, func_name)
         print('func: ', func)
         func()
+
+
+if __name__ == '__main__':
+    main()
