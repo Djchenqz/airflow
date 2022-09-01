@@ -32,7 +32,7 @@ with DAG(
 ) as dag:
     demo_task = KubernetesPodOperator(
                 task_id='task_test',
-                namespaceNAMESPACE,
+                namespace=NAMESPACE,
                 image=IMAGE,
                 cmds=['python'],
                 arguments=[
