@@ -5,6 +5,9 @@ from airflow.operators.python import PythonOperator
 import json
 from datetime import timedelta
 #from pytz import timezone
+NAMESPACE = "bitools"
+IMAGE = "406987170712.dkr.ecr.ap-northeast-1.amazonaws.com/airflow:latest"
+
 
 def demo(kwargs):
     print('kwargs: ', kwargs)
@@ -27,18 +30,14 @@ with DAG(
         dagrun_timeout=timedelta(minutes=60),
         catchup=False
 ) as dag:
-    """
-    param = {"dag_id": "{{dag.dag_id}}", "task_id": "{{task.task_id}}"}
-    param = json.dumps(param)
-    ga_ads_task = KubernetesPodOperator(
+    demo_task = KubernetesPodOperator(
                 task_id='task_test',
-                namespace=AIRFLOW_NAMESPACE,
-                image=POD_TASK_IMAGE,
+                namespaceNAMESPACE,
+                image=IMAGE,
                 cmds=['python'],
                 arguments=[
-                    "dags/goods/task_handler.py",
-                    "test_executor",
-                    param
+                    "dags/scripts/executor.py",
+                    "demo"
                 ],
                 name="test",
                 get_logs=True,
@@ -50,3 +49,4 @@ with DAG(
                 python_callable=demo,
                 op_kwargs={'args': 'this is a demo'}
             )
+    """
