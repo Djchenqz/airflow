@@ -43,6 +43,20 @@ with DAG(
                 get_logs=True,
                 is_delete_operator_pod=True,
             )
+    demo_task_fargate = KubernetesPodOperator(
+                task_id='task_test_fargate',
+                namespace=NAMESPACE,
+                image=IMAGE,
+                cmds=['python'],
+                arguments=[
+                    "dags/scripts/executor.py",
+                    "demo"
+                ],
+                name="test",
+                labels={"infrastructure": "fargate"},
+                get_logs=True,
+                is_delete_operator_pod=True,
+            )
     """
     demo_task = PythonOperator(
                 task_id='demo',
