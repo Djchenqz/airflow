@@ -58,7 +58,7 @@ with DAG(
                 is_delete_operator_pod=True,
                 resources={
                     "request_cpu": "0.5",
-                    "request_memory": "2GB",
+                    "request_memory": "2GB"}
                     #"limit_cpu": "{{ dag_run.conf['cpu'] }}",
                     #"limit_memory": "{{ dag_run.conf['memory'] }}"},
             )
