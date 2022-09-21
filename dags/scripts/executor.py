@@ -1,6 +1,7 @@
 import sys
 import json
 import time
+import boto3
 from datetime import datetime
 
 class GoodsTaskHandler(object):
@@ -17,10 +18,15 @@ class GoodsTaskHandler(object):
             print(e)
         return param_dict
 
-    def demo(self):
+    def demo1(self):
         print("start: ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         time.sleep(100)
         print("end: ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+
+    def demo(self):
+        client = boto3.client('s3')
+        res = client.list_buckets()
+        print("res: ", res)
 
 
 def main():

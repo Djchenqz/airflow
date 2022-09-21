@@ -30,6 +30,7 @@ with DAG(
         dagrun_timeout=timedelta(minutes=60),
         catchup=False
 ) as dag:
+    """
     demo_task = KubernetesPodOperator(
                 task_id='task_test',
                 namespace=NAMESPACE,
@@ -43,6 +44,7 @@ with DAG(
                 get_logs=True,
                 is_delete_operator_pod=True,
             )
+    """
     demo_task_fargate = KubernetesPodOperator(
                 task_id='task_test_fargate',
                 namespace=NAMESPACE,
