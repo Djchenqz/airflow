@@ -57,6 +57,7 @@ with DAG(
                 name="test",
                 labels={"infrastructure": "fargate"},
                 get_logs=True,
+                service_account_name="airflow-fargate",
                 is_delete_operator_pod=True,
                 resources={
                     "request_cpu": "500m",
